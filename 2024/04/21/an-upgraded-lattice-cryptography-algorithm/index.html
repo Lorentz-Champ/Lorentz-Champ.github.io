@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一种升级的格密码算法 | 熨流缱绻</title><meta name="author" content="跃焰"><meta name="copyright" content="跃焰"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="两位研究人员改进了一种著名的算法，其效率提升，可用于更大规模的密码学实验和数学计算。  数字生活愈发依赖密码学的保护。每当发送私信或网上支付，你都在依靠算法保护数据安全。为确保这些密码学系统不被破解，研究人员会不断测试其强度。 以 1982 年发表论文的三位研究者的姓名命名的 LLL 算法是一种重要工具。这种算法及其衍生算法能破解密码系统，所以通过研究其行为，可以设计出更加安全的系统。此外，该算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一种升级的格密码算法">
+<meta property="og:url" content="https://lorentz-champ.github.io/2024/04/21/an-upgraded-lattice-cryptography-algorithm/index.html">
+<meta property="og:site_name" content="熨流缱绻">
+<meta property="og:description" content="两位研究人员改进了一种著名的算法，其效率提升，可用于更大规模的密码学实验和数学计算。  数字生活愈发依赖密码学的保护。每当发送私信或网上支付，你都在依靠算法保护数据安全。为确保这些密码学系统不被破解，研究人员会不断测试其强度。 以 1982 年发表论文的三位研究者的姓名命名的 LLL 算法是一种重要工具。这种算法及其衍生算法能破解密码系统，所以通过研究其行为，可以设计出更加安全的系统。此外，该算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-04-21T02:53:54.000Z">
+<meta property="article:modified_time" content="2024-04-21T05:27:11.356Z">
+<meta property="article:author" content="跃焰">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="密码">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lorentz-champ.github.io/2024/04/21/an-upgraded-lattice-cryptography-algorithm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一种升级的格密码算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-04-21 13:27:11'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="熨流缱绻"><span class="site-name">熨流缱绻</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">一种升级的格密码算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-21T02:53:54.000Z" title="发表于 2024-04-21 10:53:54">2024-04-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-21T05:27:11.356Z" title="更新于 2024-04-21 13:27:11">2024-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/">图论</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AE%A1%E7%AE%97%E6%95%B0%E8%AE%BA/">计算数论</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/">网络空间安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="一种升级的格密码算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>两位研究人员改进了一种著名的算法，其效率提升，可用于更大规模的密码学实验和数学计算。</p>
+</blockquote>
+<p>数字生活愈发依赖密码学的保护。每当发送私信或网上支付，你都在依靠算法保护数据安全。为确保这些密码学系统不被破解，研究人员会不断测试其强度。</p>
+<p>以 1982 年发表论文的三位研究者的姓名命名的 LLL 算法是一种重要工具。这种算法及其衍生算法能破解密码系统，所以通过研究其行为，可以设计出更加安全的系统。此外，该算法在计算数论等高等数学领域也有用处。</p>
+<p>多年来，研究人员不断优化 LLL 算法的变体，但效果有限。终于在最近，两位密码学家开发出一种更有效的 LLL 类算法，能显著提升效率。这项新技术在 2023 年国际密码学大会上获得最佳论文奖，将为计算机科学家和数学家使用 LLL 类算法提供更多可能。密歇根大学密码学家克里斯·佩克特称，虽然这类算法已经研究了几十年，但这项新技术仍然令人兴奋。</p>
+<p>LLL 类算法在格世界中运行。格世界，指由一定规则排列的无限点集。想象一下，你正在铺地板，你用的是方形地砖，那么地砖的角就构成了一个格。你也可以选择其他形状的地砖，比如长平行四边形，形成不同的格。</p>
+<p>每个格都可以用“基”描述，这是一个向量集（本质上是数字列表），通过不同方式组合这些向量，可以得到格中的所有点。这些方式包括加减和数乘以及它们间的组合。</p>
+<p>每个维度大于等于 2 的格都有无限多个可能的基。不过并非所有基都一样好用。长度更短，互相近乎正交的基通常更容易处理，更适合解决某些计算问题，因此被称为“好”基。例如下图中，蓝色向量相比红色向量是一个“好”基。</p>
+<p><img src="/2024/04/21/an-upgraded-lattice-cryptography-algorithm/images/good_and_bad_basis.jpg" alt="好基与坏基"></p>
+<p>LLL 算法能在格世界中做什么呢？LLL 算法的作用是：输入多维格的基，输出一个“更好”的基。这个过程称为格基约简。而在某些情况下，破解密码系统的任务可以转换为“在格中找到一个相对较短向量”的问题。而这个向量可以从 LLL 类算法生成的简化基中找到。神奇的是，格基约简找较短向量的策略帮助研究人员攻克了一些看似与格毫无关联的系统。</p>
+<p>理论上，原始 LLL 算法运行速度很快：运行时间不会随输入大小即格的维度和基向量中数字的比特数呈指数级增长，但是会以多项式函数增长。加密研究员杜卡斯表示，实际操作中多项式时间复杂度并不总是可行。所以原始 LLL 算法无法处理太大输入。研究人员一直致力于优化 LLL 类算法以支持更大输入，并取得了不错的效果。但仍有一些问题无法解决。</p>
+<p>所以莱恩和他的导师亨宁格合著的这篇新论文结合了多种策略来提高他们的 LLL 类算法的效率。一方面，该技术使用递归结构将任务分解成更小的块。另一方面，算法仔细管理？？？涉及数字精度，在速度和正确结果间找到平衡。这项新工作使研究人员能够简化具有数千个维度的格基。</p>
+<p>过去的工作也采用了类似方法，2021 年的一篇论文也结合了递归和精度管理来快速处理大型格，但它只适用于特定类型的格，并不适用于所有在密码学中重要的格。新的算法在更广泛范围内表现良好。密码学研究人员埃斯皮托说，他很高兴有人做了这件事，他们的工作提供了“概念证明”，结果表明这项新技术可以非常快速地进行格约简。</p>
+<p>新技术已经开始应用。数学家佩奇和他的团队已经将改编后的算法用于一些计算数论任务。</p>
+<p>LLL 类算法还可以在设计抗未来量子计算机的格密码系统研究中发挥作用。未来的量子算法不会威胁到这些格密码系统，因为暂时还找不到能在可行的时间复杂度内找到比格密码算法能得到的向量更短的向量。已知最好的格密码系统攻击方法将 LLL 类算法作为基本构建块，研究人员可通过新的工具扩展可运行的攻击算法实验范围，更清晰地了解其性能。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://lorentz-champ.github.io">跃焰</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://lorentz-champ.github.io/2024/04/21/an-upgraded-lattice-cryptography-algorithm/">https://lorentz-champ.github.io/2024/04/21/an-upgraded-lattice-cryptography-algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://lorentz-champ.github.io" target="_blank">熨流缱绻</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a><a class="post-meta__tags" href="/tags/%E5%AF%86%E7%A0%81/">密码</a><a class="post-meta__tags" href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/01/17/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">跃焰</div><div class="author-info__description">日常的积分，奇迹的微分。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/21/an-upgraded-lattice-cryptography-algorithm/" title="一种升级的格密码算法">一种升级的格密码算法</a><time datetime="2024-04-21T02:53:54.000Z" title="发表于 2024-04-21 10:53:54">2024-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/17/hello-world/" title="Hello World">Hello World</a><time datetime="2024-01-17T11:19:04.734Z" title="发表于 2024-01-17 19:19:04">2024-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 跃焰</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
